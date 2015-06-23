@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "utils-clp: An Ionic project",
   "scripts":{
-    "bower": "bower"
+    "bower": "bower",
+    "gulp":"gulp"
   },
   "dependencies": {
     "gulp": "^3.5.6",
