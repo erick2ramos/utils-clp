@@ -1,0 +1,32 @@
+<ion-view view-title="Home">
+  <ion-content>
+    <div class='card'>
+    	<h4>1 usd =</h4>
+    	<h2>{{ rate.CLP }} clp</h2>
+    </div>
+    <div class='row'>
+    	<div class='col'>
+	    	<div class='item item-input item-select'>
+	    		<label class='input-label'>
+    				Curr
+    			</label>
+	    		<select ng-options='currency as currency for currency in pusher.currencies' ng-model="calc.from"></select>
+		    </div>
+    	</div>
+    	<div class='col'>
+    		<div class='item item-input'>
+		    	<input type="number" placeholder='Monto' ng-model="calc.value">    			
+    		</div>
+    	</div>
+    	<div class='col'>
+		    <button class='button button-small' type='button' ng-click='pusher.calculate()'>Calc</button>
+	   	</div>
+    </div>
+    <div class='list'>
+    	<div class='card' ng-repeat='card in pusher.list'>
+    		<h4>{{ card.currency }}: {{ card.value }}</h4>
+    		<h2 ng-repeat='conv in card.conv'>{{conv.value}} {{conv.currency}}</h2>
+    	</div>
+    </div>
+  </ion-content>
+</ion-view>

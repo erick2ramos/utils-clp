@@ -53,4 +53,43 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('HomeCtrl', function($scope){
+  $scope.rate = {
+    USD: 1,
+    CLP: 633.713561,
+    VEF: 198.64
+  };
+
+
+  $scope.calc = {
+    from:"USD",
+    value:0
+  }
+
+  $scope.pusher = {
+    list:[],
+    calculate: function(){
+      var newCalc = {
+        currency: $scope.calc.from,
+        value: parseInt($scope.calc.value),
+        conv:[]
+      };
+      angular.forEach(this.currencies, function(value){
+        if(value !== newCalc.currency){
+          var newConv = {};
+          newConv.currency = value;
+          newConv.value = newCalc.value * 1 / $scope.rate[newCalc.currency] * $scope.rate[value];
+          newCalc.conv.push(newConv);
+        }
+      });
+      this.list.unshift(newCalc);
+      $scope.calc = {
+        from:"USD",
+        value:0
+      };
+    },
+    currencies:["USD", "CLP", "VEF"],
+  }
 });
